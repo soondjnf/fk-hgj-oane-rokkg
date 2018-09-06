@@ -1,45 +1,176 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
+const googl = require('goo.gl');  
+const translate = require('google-translate-api');   
+const fs = require("fs"); 
+const canvas = require("canvas");
+const moment = require("moment");  
+const { Client, Util } = require('discord.js');  
+const ms = require("ms");
+
+const UserBlocked = new Set(); 
+const jimp = require('jimp');   
+const stripIndents = require('common-tags').stripIndents;
+const google = require('google-it'); 
+const queue = new Map(); 
+ const dateFormat = require('dateformat'); 
+ const pretty = require('pretty-ms') 
 var prefix = "!"
 
+
 client.on('message', message => {
-              if(!message.channel.guild) return;
-    if(message.content.startsWith('!bc')) {
-    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-    let copy = "Cozmo bot";
-    let request = `Requested By ${message.author.username}`;
-    if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
-    msg.react('✅')
-    .then(() => msg.react('❌'))
-    .then(() =>msg.react('✅'))
-    
-    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
-    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-	      let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
-    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
-    reaction1.on("collect", r => {
-    message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
-    message.guild.members.forEach(m => {
-    var bc = new
-       Discord.RichEmbed()
-       .setColor('RANDOM')
-       .setTitle('Broadcast')
-       .addField('Server', message.guild.name)
-       .addField('Sender', message.author.username)
-       .addField('Message', args)
-       .setThumbnail(message.author.avatarURL)
-       .setFooter(copy, client.user.avatarURL);
-    m.send({ embed: bc })
-    msg.delete();
-    })
-    })
-    reaction2.on("collect", r => {
-    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
-    msg.delete();
-    })
-    })
-    }
-    });
+ 
+    if (message.content.startsWith ("$id")) {
+ 
+ if(!message.channel.guild) return;
+  var invites = [];
+
+ 
+ let args = message.content.split(' ').slice(1).join(' ');
+ 
+         let defineduser = '';
+         if (!args[1]) {
+             defineduser = message.author;
+         } else {
+             let firstMentioned = message.mentions.users.first();
+             defineduser = firstMentioned;
+         }
+ 
+  const w = ['./hh.png','./hhh.png','./hhhh.png','./hhhhh.png','./hhhhhh.png'];
+ var Canvas = require('canvas')
+ var jimp = require('jimp')
+ 
+    let user = message.author;
+    const millis = new Date().getTime() - message.author.createdAt.getTime();
+    const noww = new Date();
+    dateFormat(noww, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+    const created = millis / 1000 / 60 / 60 / 24;
+    const milliss = new Date().getTime() - message.guild.member(message.author).joinedAt.getTime();
+    const nows = new Date();
+    dateFormat(nows, 'dddd, mmmm dS, yyyy, h:MM:ss TT');
+    const joined = milliss / 1000 / 60 / 60 / 24;
+ var heg;
+  if(men) {
+      heg = men
+  } else {
+      heg = message.author
+  }
+ var mentionned = message.mentions.members.first();
+   var h;
+  if(mentionned) {
+      h = mentionned
+  } else {
+      h = message.member
+  }
+ moment.locale('ar-TN');
+         let Image = Canvas.Image,
+             canvas = new Canvas(400, 200),
+             ctx = canvas.getContext('2d');
+         ctx.patternQuality = 'bilinear';
+         ctx.filter = 'bilinear';
+         ctx.antialias = 'subpixel';
+ 
+         fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+             if (err) return console.log(err);
+             let BG = Canvas.Image;
+             let ground = new Image;
+             ground.src = Background;
+             ctx.drawImage(ground, 0, 0, 400, 200);
+ 
+ })
+    var mentionned = message.mentions.users.first();
+ 
+     var client;
+       if(mentionned){
+           var client = mentionned;
+       } else {
+           var client = message.author;
+ 
+       }
+ 
+  var men = message.mentions.users.first();
+             var heg;
+             if(men) {
+                 heg = men
+             } else {
+                 heg = message.author
+             }
+                 let url = defineduser.displayAvatarURL.endsWith(".webp") ? defineduser.displayAvatarURL.slice(20, 20) + ".png" : defineduser.displayAvatarURL;
+                 jimp.read(url, (err, ava) => {
+                     if (err) return console.log(err);
+                     ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                         if (err) return console.log(err);
+ 
+                                         
+ 
+ 
+ 
+                                               var time2;
+       if(mentionned){
+           var time2 = `${dateFormat(message.mentions.users.first.joinedAt)}`;
+       } else {
+           var time2 = `${dateFormat(message.member.joinedAt)}`;
+ 
+       }
+ 
+ 
+                   
+ 
+ 
+ 
+ 
+                         ctx.font = 'Bold 20px Arial ';
+                         ctx.fontSize = '15px';
+                         ctx.fillStyle = "#ffffff";
+                         ctx.textAlign = "center";
+                         ctx.fillText(`${defineduser.username}`, 210 , 90);
+ 
+ 
+ 
+                         var time2;
+       if(mentionned){
+           var time2 = `${dateFormat(message.mentions.users.first.joinedAt)}`;
+       } else {
+           var time2 = `${dateFormat(message.member.joinedAt)}`;
+ 
+       }
+ 
+                         ctx.font = 'Bold 13px Arial ';
+                         ctx.fontSize = '13px';
+                         ctx.fillStyle = "#ffffff";
+                         ctx.textAlign = "center";
+                         ctx.fillText(` »   دخولك الدسكورد ${created.toFixed(0)} يومّا`, 270 , 125 );
+ 
+ 
+
+
+                         ctx.font = 'Bold 13px Arial ';
+                         ctx.fontSize = '13px';
+                         ctx.fillStyle = "#ffffff";
+                         ctx.textAlign = "center";
+                         ctx.fillText(` »  دخولك السيرفر ${joined.toFixed(0)} يومّا`, 270 , 170);
+ 
+                       
+                         const Avatar = Canvas.Image;
+                              let ava = new Avatar;
+                              ava.src = buf;
+                              ctx.beginPath();
+                              ctx.arc(72, 115.80, 50, 0, Math.PI*2);
+                              ctx.stroke();
+                                 ctx.clip();
+                                 ctx.drawImage(ava, 15, 55, 120, 120);
+                                 
+ message.channel.sendFile(canvas.toBuffer())
+ 
+     
+         })
+     })
+ 
+ 
+ 
+ 
+ }
+ 
+ })
+
 client.login(process.env.BOT_TOKEN);
